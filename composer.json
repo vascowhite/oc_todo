@@ -1,0 +1,27 @@
+{
+    "name": "vascowhite/OC_todo",
+    "description": "An app to represent todo's on Todo,txt format.",
+    "keywords": [
+        "Todo",
+        "productivity",
+        "Getting Things Done"
+    ],
+
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Paul White",
+            "email": "paul@vascowhite.co.uk",
+            "homepage": "http://www.vascowhite.co.uk",
+            "role": "developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "vascowhite/todo": "*"
+    },
+    "require-dev": {
+      "phpunit/phpunit": "*"
+    }
+}

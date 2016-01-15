@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<info>
+	<id>todo</id>
+	<name>Todo</name>
+    <namespace>Todo</namespace>
+	<version>0.0.1</version>
+	<licence>AGPL</licence>
+	<author>Paul White</author>
+	<require>8</require>
+	<description>Todo App compatible with todo.txt</description>
+</info>
