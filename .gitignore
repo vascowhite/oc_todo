@@ -3,4 +3,7 @@
 Vagrantfile
 vendor
 coverage
+/js/bower_components
+/js/vendor
+/node_modules
 log

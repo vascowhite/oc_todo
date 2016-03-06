@@ -1,11 +1,16 @@
-<?php style('todo', 'style'); ?>
-<div id="app">
+<div id="app" ng-app="todo">
     <div id="app-navigation">
-        <?php print_unescaped($this->inc('part.navigation')); ?>
-        <?php print_unescaped($this->inc('part.settings')); ?>
+        <todo-navigation></todo-navigation>
+        <div id="app-settings">
+            <div id="app-settings-header">
+                <button class="settings-button"
+                        data-apps-slide-toggle="#app-settings-content"
+                ></button>
+            </div>
+            <todo-settings></todo-settings>
+        </div>
     </div>
     <div id="app-content">
-        <?php print_unescaped($this->inc('part.content')); ?>
+        <todo-content></todo-content>
     </div>
 </div>
-<?php script('todo', ['todo',]);

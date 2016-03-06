@@ -68,16 +68,12 @@ class TodoService
     }
 
     /**
-     * @return array
+     * @return array[]
      */
     public function getList()
     {
-
         return [
-            'todos'     =>$this->getTodos(),
-            'contexts'  => $this->getContexts(),
-            'projects'  => $this->getProjects(),
-            'options'   => $this->getOptions(),
+            'todos' => $this->getTodos(),
         ];
     }
 
@@ -167,12 +163,14 @@ class TodoService
 
     /**
      * @param Todo $todo
+     * @return Todo
      */
     public function addTodo(Todo $todo)
     {
         $todoList = $this->storage->readTodoList();
         $todoList[] = $todo;
         $this->storage->writeTodoList($todoList);
+        return $todo;
     }
 
     /**
@@ -255,20 +253,18 @@ class TodoService
     }
 
     /**
-     * @return int
+     * @param int $todoNum
+     * @return Todo[]
      */
-    public function archive()
+    public function archive($todoNum)
     {
-        $result = 0;
         $todoArray = $this->storage->readTodoList();
-        foreach($todoArray as $key => $todo){
-            if($todo->getCompleted()){
-                $result += $this->storage->writeDoneTodoToArchive($todo);
-                unset($todoArray[$key]);
-            }
+        $todoToArchive = $this->getTodoByNum($todoNum);
+        if($todoToArchive->sameAs($todoArray[$todoNum])){
+            $this->storage->writeDoneTodoToArchive($todoToArchive);
+            unset($todoArray[$todoNum]);
+            $this->storage->writeTodoList($todoArray);
         }
-        $todoArray = array_values($todoArray);
-        $this->storage->writeTodoList($todoArray);
-        return $result;
+        return $this->getList();
     }
 }

@@ -27,11 +27,16 @@ return ['routes' =>[
 	['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
     //Ajax
     ['name' => 'ajax#get', 'url' => '/get', 'verb' => 'GET'],
-	['name' => 'ajax#doTodo', 'url' => '/do', 'verb' => 'POST'],
-	['name' => 'ajax#undoTodo', 'url' => '/undo', 'verb' => 'POST'],
-    ['name' => 'ajax#addTodo', 'url' => '/add', 'verb' => 'PUT'],
-	['name' => 'ajax#updateTodo', 'url' => '/update', 'verb' => 'PUT'],
-    ['name' => 'ajax#filters', 'url' => '/filters', 'verb' => 'GET'],
-    ['name' => 'ajax#setOption', 'url' => '/option/{option}/{value}', 'verb' => 'GET'],
-	['name' => 'ajax#archive', 'url' => '/archive', 'verb' => 'GET'],
+	['name' => 'ajax#doTodo', 'url' => '/do/{todoNum}', 'verb' => 'PUT'],
+	['name' => 'ajax#undoTodo', 'url' => '/undo/{todoNum}', 'verb' => 'PUT'],
+    ['name' => 'ajax#addTodo', 'url' => '/add', 'verb' => 'POST'],
+	['name' => 'ajax#updateTodo', 'url' => '/update/{todoNum}', 'verb' => 'PUT'],
+	['name' => 'ajax#archive', 'url' => '/archive', 'verb' => 'POST'],
+    ['name' => 'ajax#getProjects', 'url' => '/projects', 'verb' => 'GET'],
+    ['name' => 'ajax#getContexts', 'url' => '/contexts', 'verb' => 'GET'],
+	//Templates
+	['name' => 'template#getTemplate', 'url' => '/template/{templateName}', 'verb' => 'GET'],
+	//Options
+    ['name' => 'options#setOption', 'url' => '/options/{option}', 'verb' => 'PUT'],
+    ['name' => 'options#getOptions', 'url' => '/options', 'verb' => 'GET'],
 ]];

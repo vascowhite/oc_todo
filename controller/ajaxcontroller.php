@@ -43,6 +43,8 @@ use Vascowhite\Todo\Todo;
 
 class AjaxController extends Controller
 {
+    use Response;
+
     /**
      * @var TodoService
      */
@@ -80,26 +82,15 @@ class AjaxController extends Controller
      */
     public function get()
     {
-        return new JSONResponse($this->service->getList());
+        return $this->generateResponse(function(){
+            return $this->service->getList();
+        });
     }
 
     /**
      * @NoAdminRequired
      *
-     * @return JSONResponse
-     */
-    public function filters()
-    {
-        $filterArray = [];
-        $filterArray['projects'] = $this->service->getProjects();
-        $filterArray['contexts'] = $this->service->getContexts();
-        return new JSONResponse($filterArray);
-    }
-
-    /**
-     * @NoAdminRequired
-     *
-     * @param $todoText
+     * @param string $todoText
      *
      * @return JSONResponse
      */
@@ -107,9 +98,10 @@ class AjaxController extends Controller
     {
         //New todo's are passed base64 encoded to avoid url problems
         $todoText = base64_decode($todoText);
-        $this->service->addTodo(Todo::createFromString($todoText));
-        $response = new JSONResponse($this->service->getList());
-        return $response;
+        $todo = Todo::createFromString($todoText);
+        return $this->generateResponse(function() use($todo){
+            return $this->service->todoToArray($this->service->addTodo($todo));
+        });
     }
 
     /**
@@ -141,34 +133,19 @@ class AjaxController extends Controller
     /**
      * @NoAdminRequired
      *
-     * @param $option
-     * @param $value
-     * @return JSONResponse
-     */
-    public function setOption($option, $value)
-    {
-        //Option values are passed base64 encoded to avoid problems with paths looking like URL's
-        $value = base64_decode($value);
-        $this->config->setUserValue($this->userId, $this->appName, $option, $value);
-        return new JSONResponse($this->service->getOptions());
-    }
-
-    /**
-     * @NoAdminRequired
-     *
-     * @param string $oldText
+     * @param int $todoNum
      * @param string $newText
      *
      * @return JSONResponse
      */
-    public function updateTodo($oldText, $newText)
+    public function updateTodo($todoNum, $newText)
     {
-        $oldText = trim(base64_decode($oldText));
+        $oldText = $this->service->getTodoByNum($todoNum);
         $newText = trim(base64_decode($newText));
 
         $result = $this->service->updateTodo($oldText, $newText);
         if($result){
-            $response = new JSONResponse($this->service->getList());
+            $response = new JSONResponse($this->service->todoToArray($this->service->getTodoByNum($todoNum)));
         } else {
             $response = new JSONResponse([
                 'error' => 'No match',
@@ -185,8 +162,33 @@ class AjaxController extends Controller
      *
      * @return JSONResponse
      */
-    public function archive()
+    public function getProjects()
     {
-        return new JSONResponse([$this->service->archive()]);
+        return $this->generateResponse(function(){
+            return $this->service->getProjects();
+        });
+    }
+
+    /**
+     * @NoAdminRequired
+     *
+     * @return JSONResponse
+     */
+    public function getContexts()
+    {
+        return $this->generateResponse(function(){
+            return $this->service->getContexts();
+        });
+    }
+
+    /**
+     * @NoAdminRequired
+     *
+     * @param int $todoNum
+     * @return JSONResponse
+     */
+    public function archive($todoNum)
+    {
+        return new JSONResponse($this->service->archive($todoNum));
     }
 }
