@@ -1,12 +1,13 @@
 /**
  * Created by paul on 22/02/16.
  */
+'use strict';
 (function(){
     angular.module('todo').
-    directive('todoListPriority', ['TodoList', function todoListPriority(todoList){
+    directive('todoListContext', ['TodoList', function todoListContext(todoList){
         return {
             restrict: 'E',
-            templateUrl: OC.generateUrl('apps/todo/template/part.todolistPriority'),
+            templateUrl: OC.generateUrl('apps/todo/template/part.todolistContext'),
             scope: true,
             link: function(scope){
                 scope.todoList = todoList;

@@ -23,10 +23,12 @@
 namespace OCA\Todo\Controller;
 
 use OCA\Todo\Service\TodoService;
-use \OCP\AppFramework\Controller;
-use \OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\ContentSecurityPolicy;
+use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IRequest;
+use OCP\Util;
 
 /**
  * Controller class for main page.
@@ -80,32 +82,33 @@ class PageController extends Controller {
 	 */
 	public function index()
     {
-        \OCP\Util::addStyle($this->appName, '../js/bower_components/bootstrap/dist/css/bootstrap');
-        \OCP\Util::addStyle($this->appName, 'style');
-        \OCP\Util::addScript($this->appName, 'bower_components/bower-angularjs/angular.min');
-        \OCP\Util::addScript($this->appName, 'bower_components/bower-angularjs/angular-route.min');
-        \OCP\Util::addScript($this->appName, 'bower_components/bootstrap/dist/js/bootstrap');
-        \OCP\Util::addScript($this->appName, 'public/app');
-        \OCP\Util::addScript($this->appName, 'app/services/todoOptions');
-        \OCP\Util::addScript($this->appName, 'app/services/todoList');
-        \OCP\Util::addScript($this->appName, 'app/services/todoConnector');
-        \OCP\Util::addScript($this->appName, 'app/directives/todonavigation');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoContent');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoSettings');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoItem');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoEditItem');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoListFile');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoListAlpha');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoListPriority');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoListProject');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoListContext');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoListDueDate');
-        \OCP\Util::addScript($this->appName, 'app/directives/todoAddNew');
+        Util::addStyle($this->appName, 'styles');
+        Util::addScript($this->appName, 'app');
 
 		$response = new TemplateResponse(
             'todo',
             'main'
         );
+
+
+        //This sucks
+        $csp = new ContentSecurityPolicy();
+
+        if($this->config->getSystemValue('debug')){
+            $csp->allowInlineScript(true);
+            $csp->allowEvalScript(true);
+            $csp->allowInlineStyle(true);
+            $csp->addAllowedScriptDomain('*');
+            $csp->addAllowedChildSrcDomain('*');
+            $csp->addAllowedConnectDomain('*');
+            $csp->addAllowedStyleDomain('*');
+            $csp->addAllowedObjectDomain('*');
+            $csp->addAllowedFontDomain('*');
+            $csp->addAllowedImageDomain('*');
+            $csp->addAllowedMediaDomain('*');
+        }
+
+        $response->setContentSecurityPolicy($csp);
 		return $response;
 	}
 }

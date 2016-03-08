@@ -3,7 +3,11 @@
 Vagrantfile
 vendor
 coverage
-/js/bower_components
-/js/vendor
+/package
+/bower_components
 /node_modules
+/.sass-cache
+/.gulp-scss-cache
+/dist
+/css
 log

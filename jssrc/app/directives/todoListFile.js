@@ -1,6 +1,7 @@
 /**
  * Created by paul on 22/02/16.
  */
+'use strict';
 (function(){
     angular.module('todo').
     directive('todoListFile', ['TodoList', function todoListFile(todoList){

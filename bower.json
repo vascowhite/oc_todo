@@ -5,7 +5,7 @@
     "Paul White <paul@vascowhite.co.uk>"
   ],
   "description": "todo.txt on owncloud",
-  "main": "js/public/app.js",
+  "main": "js/app/app.js",
   "license": "MIT",
   "private": true,
   "ignore": [
@@ -14,5 +14,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "angular": "angularjs#^1.5.0",
+    "bootstrap": "^3.3.6"
+  }
 }

@@ -1,0 +1,81 @@
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+
+$overdueColour: #fff5f5;
+$doneColour: #f5fff5;
+
+$idleOpacity: 0.3;
+$hoverOpacity: 0.5;
+
+#app-content {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.container-fluid input[type="text"] {
+  display: inline-block;
+  width: 100%;
+}
+
+.container-fluid todo-edit-item input[type='text'] {
+  width: 96%;
+  padding: 0 0 0 2px;
+  margin: 0;
+}
+
+.list-group-item {
+  margin: 0;
+  &:hover {
+    border-color: grey;
+  }
+}
+
+.todoactions {
+  position: absolute;
+  right: 20px;
+  a {
+    opacity: $idleOpacity;
+    &:hover {
+      opacity: $hoverOpacity;
+    }
+  }
+}
+
+.todo_overdue {
+  background-color: $overdueColour;
+}
+
+.todo_done {
+  text-decoration: line-through;
+  background-color: $doneColour;
+}
+
+.sortby {
+  opacity: 0.3;
+    &:hover {
+      opacity: $hoverOpacity;
+    }
+}
+
+.sortby-file {
+  background-image: url("/apps/todo/img/file.png");
+}
+
+.sortby-alpha {
+  background-image: url("/apps/todo/img/alpha.png");
+}
+
+.sortby-priority {
+  background-image: url("/apps/todo/img/priority.png");
+}
+
+.sortby-context {
+  background-image: url("/apps/todo/img/context.png");
+}
+
+.sortby-project {
+  background-image: url("/apps/todo/img/project.png");
+}
+
+.sortby-duedate {
+  background-image: url("/apps/todo/img/duedate.png");
+}

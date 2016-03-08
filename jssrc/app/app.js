@@ -1,6 +1,7 @@
 /**
  * Created by paul on 09/02/16.
  */
+'use strict';
 (function(){
     angular.module('todo', ['ngRoute'])
         .config(['$httpProvider', function($httpProvider){

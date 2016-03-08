@@ -1,6 +1,7 @@
 /**
  * Created by paul on 13/02/16.
  */
+'use strict';
 (function(){
     angular.module('todo').
     service('TodoList', ['$http', '$interval', function TodoList($http, $interval){

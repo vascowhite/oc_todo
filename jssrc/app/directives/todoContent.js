@@ -1,6 +1,7 @@
 /**
  * Created by paul on 13/02/16.
  */
+'use strict';
 (function(){
     angular.module('todo').
     directive('todoContent', ['TodoOptions', '$location', function todoContent(todoOptions, $location){

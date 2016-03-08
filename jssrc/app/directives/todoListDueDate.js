@@ -1,12 +1,13 @@
 /**
  * Created by paul on 22/02/16.
  */
+'use strict';
 (function(){
     angular.module('todo').
-    directive('todoListAlpha', ['TodoList', function todoListAlpha(todoList){
+    directive('todoListDueDate', ['TodoList', function todoListDueDate(todoList){
         return {
             restrict: 'E',
-            templateUrl: OC.generateUrl('apps/todo/template/part.todolistAlpha'),
+            templateUrl: OC.generateUrl('apps/todo/template/part.todolistDueDate'),
             scope: true,
             link: function(scope){
                 scope.todoList = todoList;

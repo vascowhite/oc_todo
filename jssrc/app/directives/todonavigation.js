@@ -1,6 +1,7 @@
 /**
  * Created by paul on 13/02/16.
  */
+'use strict';
 (function(){
     angular.module('todo').
     directive('todoNavigation', ['$location', function todoNavigation($location){

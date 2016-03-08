@@ -1,6 +1,7 @@
 /**
  * Created by paul on 11/02/16.
  */
+'use strict';
 (function(){
     angular.module('todo').
     service('TodoOptions', ['$http', function TodoOptions($http){
