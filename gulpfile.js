@@ -13,6 +13,7 @@ var runSequence = require('run-sequence');
 var concat = require('gulp-concat');
 var composer = require('gulp-composer');
 var zip = require('gulp-zip');
+var sourcemaps = require('gulp-sourcemaps');
 
 function customPlumber(msg){
   return plumber({
@@ -33,11 +34,8 @@ gulp.task('css', function() {
     }));
 });
 
-gulp.task('js', function(){
+gulp.task('concatjs', function(){
     return gulp.src([
-        'bower_components/angular/angular.min.js',
-        'bower_components/angular-route/angular-route.min.js',
-        'bower_components/bootstrap/dist/js/bootstrap.js',
         'jssrc/app/app.js',
         'jssrc/app/services/todoOptions.js',
         'jssrc/app/services/todoList.js',
@@ -55,13 +53,24 @@ gulp.task('js', function(){
         'jssrc/app/directives/todoAddNew.js'
     ]).
     pipe(customPlumber('JS Error')).
+    pipe(sourcemaps.init()).
     pipe(concat({
         path: 'app.js'
     })).
+    pipe(sourcemaps.write()).
     pipe(gulp.dest('js')).
     pipe(bSync.reload({
         stream: true
     }));
+});
+
+gulp.task('js', ['concatjs'], function(){
+    return gulp.src([
+        'bower_components/angular/angular.js',
+        'bower_components/angular-route/angular-route.js',
+        //'bower_components/bootstrap/dist/js/bootstrap.js',
+    ]).
+    pipe(gulp.dest('js'));
 });
 
 gulp.task('watch', [ 'css', 'js', 'browserSync'], function(){
@@ -78,6 +87,12 @@ gulp.task('browserSync', function(){
 gulp.task('clean:dist', function(){
     return del([
         'dist/**/*'
+    ]);
+});
+
+gulp.task('clean:js', function(){
+    return del([
+        'js/**/*'
     ]);
 });
 
@@ -147,10 +162,10 @@ gulp.task("composer", function(){
 
 gulp.task('zip', function(){
     return gulp.src([
-        'package/todo/**/*'
+        'package/**/*'
     ]).
     pipe(zip('todo.zip')).
-    pipe(gulp.dest('package'));
+    pipe(gulp.dest('./'));
 });
 
 gulp.task('deploy', function(callback){

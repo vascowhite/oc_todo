@@ -83,6 +83,9 @@ class PageController extends Controller {
 	public function index()
     {
         Util::addStyle($this->appName, 'styles');
+        Util::addScript($this->appName, 'angular');
+        Util::addScript($this->appName, 'angular-route');
+        //Util::addScript($this->appName, 'bootstrap');
         Util::addScript($this->appName, 'app');
 
 		$response = new TemplateResponse(
