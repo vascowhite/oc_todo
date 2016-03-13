@@ -52,7 +52,7 @@ gulp.task('concatjs', function(){
         'jssrc/app/directives/todoListDueDate.js',
         'jssrc/app/directives/todoAddNew.js'
     ]).
-    pipe(customPlumber('JS Error')).
+    pipe(customPlumber('ConcatJS Error')).
     pipe(sourcemaps.init()).
     pipe(concat({
         path: 'app.js'
@@ -70,12 +70,27 @@ gulp.task('js', ['concatjs'], function(){
         'bower_components/angular-route/angular-route.js',
         //'bower_components/bootstrap/dist/js/bootstrap.js',
     ]).
-    pipe(gulp.dest('js'));
+    pipe(gulp.dest('js')).
+    pipe(bSync.reload({
+        stream: true
+    }));
 });
 
-gulp.task('watch', [ 'css', 'js', 'browserSync'], function(){
+gulp.task('php', function(cb){
+    bSync.reload({stream: true});
+    cb();
+});
+
+gulp.task('watch', [ 'css', 'js', 'php', 'browserSync'], function(){
     gulp.watch('sass/**/*.scss', ['css']);
     gulp.watch('js/*.js', ['js']);
+    gulp.watch([
+        'appinfo/**/*.php',
+        'controller/**/*.php',
+        'service/**/*.php',
+        'storage/**/*.php',
+        'temolates/**/*.php',
+    ], ['php']);
 });
 
 gulp.task('browserSync', function(){
