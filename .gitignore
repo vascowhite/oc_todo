@@ -3,6 +3,7 @@
 Vagrantfile
 vendor
 coverage
+/js
 /package
 /bower_components
 /node_modules
