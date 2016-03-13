@@ -107,7 +107,10 @@ class TodoStorage
         $todoStrings = explode("\n", $file->getContent());
         array_pop($todoStrings);
         foreach($todoStrings as $string){
-            $result[] = Todo::createFromString($string);
+            //Skip empty lines
+            if(strlen($string) > 0){
+                $result[] = Todo::createFromString($string);
+            }
         }
         return $result;
     }
