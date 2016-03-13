@@ -80,7 +80,7 @@ gulp.task('watch', [ 'css', 'js', 'browserSync'], function(){
 
 gulp.task('browserSync', function(){
     bSync.init({
-        proxy: 'http://localhost:8000/'
+        proxy: 'http://localhost:8000/apps/todo'
     });
 });
 
