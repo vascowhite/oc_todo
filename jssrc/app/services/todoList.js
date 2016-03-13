@@ -156,6 +156,22 @@
             });
         };
 
+        this.delete = function(todoNum){
+            //Remove item from list after short delay. Say 2 seconds?
+            //Use $interval?
+            console.log('Deleting todo number ' + todoNum);
+            $http.post(OC.generateUrl('apps/todo/delete'), {todoNum: todoNum}).
+            then(function(data){
+                var todolist = data.data.todos;
+                var len = todolist.length;
+                for(var i = 0; i < len; i ++){
+                    todolist[i].todoNum = i;
+                }
+                self.todolist = todolist;
+                self.prepare();
+            });
+        };
+
         this.edit = function(todoNum, newText){
             $http.put(OC.generateUrl('apps/todo/update/' + todoNum), {todoNum: todoNum, newText: btoa(newText)}).
             then(function(data){

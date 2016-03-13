@@ -25,6 +25,13 @@
             >
                 <img class="svg" src="/apps/todo/img/archive.png">
             </a>
+            <a
+                class="action"
+                ng-click="todoItemCtrl.delete(todo.todoNum)"
+                title="Archive"
+            >
+                <img class="svg" src="/core/img/actions/delete.svg">
+            </a>
             <a class="action" ng-click="editCtrl.showEdit = true" title="Edit">
                 <img class="svg" src="/core/img/actions/rename.svg">
             </a>

@@ -191,4 +191,15 @@ class AjaxController extends Controller
     {
         return new JSONResponse($this->service->archive($todoNum));
     }
+
+    /**
+     * @NoAdminRequired
+     *
+     * @param int $todoNum
+     * @return JSONResponse
+     */
+    public function delete($todoNum)
+    {
+        return new JSONResponse($this->service->delete($todoNum));
+    }
 }

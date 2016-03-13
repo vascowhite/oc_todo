@@ -4,7 +4,6 @@ Vagrantfile
 vendor
 coverage
 /package
-js
 /bower_components
 /node_modules
 /.sass-cache
@@ -13,4 +12,4 @@ js
 /css
 log
 *.log
-js/app.js
+js/*

@@ -267,4 +267,19 @@ class TodoService
         }
         return $this->getList();
     }
+
+    /**
+     * @param int $todoNum
+     * @return \array[]
+     */
+    public function delete($todoNum)
+    {
+        $todoArray = $this->storage->readTodoList();
+        $todoToDelete = $this->getTodoByNum($todoNum);
+        if($todoToDelete->sameAs($todoArray[$todoNum])){
+            unset($todoArray[$todoNum]);
+            $this->storage->writeTodoList($todoArray);
+        }
+        return $this->getList();
+    }
 }
