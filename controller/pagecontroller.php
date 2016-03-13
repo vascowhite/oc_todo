@@ -63,7 +63,6 @@ class PageController extends Controller {
         $this->service = $service;
         $this->userId = $UserId;
         $this->config = $config;
-        $this->setUp();
     }
 
     public function setUp()
@@ -82,6 +81,7 @@ class PageController extends Controller {
 	 */
 	public function index()
     {
+        $this->setUp();
         Util::addStyle($this->appName, 'styles');
         Util::addScript($this->appName, 'angular');
         Util::addScript($this->appName, 'angular-route');
