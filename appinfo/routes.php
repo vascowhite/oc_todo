@@ -32,6 +32,7 @@ return ['routes' =>[
     ['name' => 'ajax#addTodo', 'url' => '/add', 'verb' => 'POST'],
 	['name' => 'ajax#updateTodo', 'url' => '/update/{todoNum}', 'verb' => 'PUT'],
 	['name' => 'ajax#archive', 'url' => '/archive', 'verb' => 'POST'],
+	['name' => 'ajax#delete', 'url' => '/delete', 'verb' => 'POST'],
     ['name' => 'ajax#getProjects', 'url' => '/projects', 'verb' => 'GET'],
     ['name' => 'ajax#getContexts', 'url' => '/contexts', 'verb' => 'GET'],
 	//Templates

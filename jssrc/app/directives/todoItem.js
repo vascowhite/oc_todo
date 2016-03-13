@@ -17,6 +17,10 @@
                 this.archive = function(todoNum){
                     todoList.archive(todoNum);
                 };
+
+                this.delete = function(todoNum){
+                    todoList.delete(todoNum);
+                };
             },
             controllerAs: 'todoItemCtrl'
         };
