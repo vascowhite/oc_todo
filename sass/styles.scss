@@ -40,6 +40,14 @@ $hoverOpacity: 0.5;
   }
 }
 
+.todo_icon {
+  visibility: hidden;
+}
+
+.list-group-item:hover .todo_icon {
+  visibility: visible;
+}
+
 .todo_overdue {
   background-color: $overdueColour;
 }
