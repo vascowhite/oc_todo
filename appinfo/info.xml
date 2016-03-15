@@ -3,12 +3,17 @@
 	<id>todo</id>
 	<name>Todo</name>
     <namespace>Todo</namespace>
-	<version>0.0.1</version>
+	<version>0.1.0</version>
 	<licence>AGPL</licence>
 	<author>Paul White</author>
-	<require>8</require>
 	<types>
 		<filesystem/>
 	</types>
+	<dependencies>
+		<php min-version="5.6" max-version="7.0"/>
+		<database>sqlite</database>
+		<database>mysql</database>
+		<owncloud min-version="8.22" max-version="10"/>
+	</dependencies>
 	<description>Todo App compatible with todo.txt</description>
 </info>
