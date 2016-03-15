@@ -117,6 +117,10 @@ gulp.task('clean:deploy', function(){
     ]);
 });
 
+gulp.task('clean:zip', function(){
+    return del(['./todo.zip']);
+});
+
 gulp.task('copy:appinfo', function(){
     return gulp.src('appinfo/**/*').
     pipe(gulp.dest('package/todo/appinfo'));
@@ -187,6 +191,7 @@ gulp.task('deploy', function(callback){
     runSequence(
         'clean:deploy',
         'clean:dist',
+        'clean:zip',
         'css',
         'js',
         'copy:appinfo',
