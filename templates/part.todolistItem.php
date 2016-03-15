@@ -28,7 +28,7 @@
             <a
                 class="action"
                 ng-click="todoItemCtrl.delete(todo.todoNum)"
-                title="Archive"
+                title="Delete"
             >
                 <img class="svg" src="/core/img/actions/delete.svg">
             </a>
