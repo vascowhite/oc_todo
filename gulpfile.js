@@ -70,20 +70,20 @@ gulp.task('js', ['concatjs'], function(){
         'bower_components/angular-route/angular-route.js',
         //'bower_components/bootstrap/dist/js/bootstrap.js',
     ]).
+    pipe(customPlumber('JS Error')).
     pipe(gulp.dest('js')).
     pipe(bSync.reload({
         stream: true
     }));
 });
 
-gulp.task('php', function(cb){
-    bSync.reload({stream: true});
-    cb();
+gulp.task('php', function(){
+    return bSync.reload({stream: true});
 });
 
 gulp.task('watch', [ 'css', 'js', 'php', 'browserSync'], function(){
     gulp.watch('sass/**/*.scss', ['css']);
-    gulp.watch('js/*.js', ['js']);
+    gulp.watch('jssrc/**/*.js', ['js']);
     gulp.watch([
         'appinfo/**/*.php',
         'controller/**/*.php',
