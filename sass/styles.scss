@@ -2,9 +2,13 @@
 
 $overdueColour: #fff5f5;
 $doneColour: #f5fff5;
+$priorityA: #91251b;
 
 $idleOpacity: 0.3;
 $hoverOpacity: 0.5;
+
+$leftPos: 2px;
+$spanWidth: 22px;
 
 #app-content {
   padding-left: 2px;
@@ -16,6 +20,69 @@ $hoverOpacity: 0.5;
   width: 100%;
 }
 
+.todo_overdue {
+  background-color: $overdueColour;
+}
+
+.todo_done {
+  text-decoration: line-through;
+  background-color: $doneColour;
+}
+
+.todo-item-container {
+  height: 22px;
+  span {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    min-width: $spanWidth;
+    .todo_icon {
+      visibility: hidden;
+    }
+  }
+
+  .priorityA {
+    color: $priorityA;
+  }
+
+  .priorityB {
+    color: lighten($priorityA, 20%);
+  }
+
+  .priorityC {
+    color: lighten($priorityA, 40%);
+  }
+
+  .todo_check {
+    left: $leftPos;
+  }
+
+  .todo_num {
+    left: $leftPos + $spanWidth;
+  }
+
+  .todo_priority {
+    left: $leftPos + ($spanWidth * 2);
+  }
+
+  .todo_text {
+    left: $leftPos + ($spanWidth * 3);
+  }
+
+  .todoactions {
+    z-index: 0;
+    position: absolute;
+    right: 20px;
+    a {
+      opacity: $idleOpacity;
+      &:hover {
+        opacity: $hoverOpacity;
+      }
+    }
+  }
+}
+
+
 .container-fluid todo-edit-item input[type='text'] {
   width: 96%;
   padding: 0 0 0 2px;
@@ -26,35 +93,14 @@ $hoverOpacity: 0.5;
   margin: 0;
   &:hover {
     border-color: grey;
-  }
-}
-
-.todoactions {
-  position: absolute;
-  right: 20px;
-  a {
-    opacity: $idleOpacity;
-    &:hover {
-      opacity: $hoverOpacity;
+    .todo_icon {
+      visibility: visible;
     }
   }
 }
 
 .todo_icon {
   visibility: hidden;
-}
-
-.list-group-item:hover .todo_icon {
-  visibility: visible;
-}
-
-.todo_overdue {
-  background-color: $overdueColour;
-}
-
-.todo_done {
-  text-decoration: line-through;
-  background-color: $doneColour;
 }
 
 .sortby {

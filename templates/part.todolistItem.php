@@ -2,19 +2,27 @@
     class="list-group-item"
     ng-class="{todo_done: todo.completed, todo_overdue: todo.overdue}"
 >
-    <div ng-hide="editCtrl.showEdit">
-        <span class="todo_icon">
+    <div class="todo-item-container" ng-hide="editCtrl.showEdit">
+        <span class="todo_icon todo_check">
             <input
                 type="checkbox"
                 ng-checked="todo.completed"
                 ng-click="todoItemCtrl.doTodo(todo.todoNum)"
             >
         </span>
-        <span class="todo_priority">
+        <span class="todo_num">
             <strong>({{todo.todoNum + 1}})</strong>
         </span>
+        <span
+            class="todo_priority"
+            ng-class="{priorityA: todo.priority=='A', priorityB: todo.priority=='B', priorityC: todo.priority=='C'}"
+            ng-click="todoItemCtrl.changePriority(todo.todoNum)"
+            title="Click to change priority"
+        >
+            {{todoItemCtrl.getPriorityText(todo.todoNum)}}
+        </span>
         <span class="todo_text">
-            {{todo.todo}}
+            {{todoItemCtrl.getTodoText(todo.todoNum)}}
         </span>
         <span class="todo_icon todoactions">
             <a
