@@ -82,11 +82,6 @@
         var self = this;
 
         this.getList = function(callback){
-            if(self.todolist !== undefined && self.todolist.length > 0){
-                self.prepare();
-                callback(self.todolist);
-                return;
-            }
             $http.get(OC.generateUrl('apps/todo/get')).
             then(function(data){
                 var todoList = data.data.data.todos;
@@ -182,9 +177,16 @@
             });
         };
 
-        this.getList(function(todos){
+        self.getList(function(todos){
             self.todolist = todos;
             self.prepare();
         });
+
+        $interval(function(){
+            self.getList(function(todos){
+                self.todolist = todos;
+                self.prepare();
+            });
+        }, 30000);
     }]);
 })();
