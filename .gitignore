@@ -1,6 +1,5 @@
 .vagrant
 .idea
-Vagrantfile
 vendor
 coverage
 /js
