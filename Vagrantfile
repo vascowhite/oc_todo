@@ -5,8 +5,8 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "debian64_OC_9.0"
-  config.vm.box_url = "https://cloud.vascowhite.co.uk/index.php/s/5aqdDjH7ba2jU6t/download"
+  config.vm.box = "debian64_OC_9.1"
+  config.vm.box_url = "https://cloud.vascowhite.co.uk/index.php/s/eXklATkFNmltUu2/download"
   config.vm.hostname = "cloud.local"
   # config.ssh.username = "vagrant"
   # config.ssh.password = "vagrant"

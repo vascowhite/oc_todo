@@ -17,7 +17,7 @@
 		<php min-version="5.5" max-version="7.0"/>
 		<database>sqlite</database>
 		<database>mysql</database>
-		<owncloud min-version="8.22" max-version="9.0"/>
+		<owncloud min-version="8.22" max-version="9.1"/>
 	</dependencies>
 	<description>Todo App compatible with todo.txt</description>
 </info>
